@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.matching_algorithm.naive import execute_naive_matching
+from app.matching_algorithm.naive import execute_static_naive_matching
 
 app = FastAPI()
 
@@ -12,5 +12,5 @@ def healthcheck():
 
 @app.get("/match")
 def matching_service():
-    matches = execute_naive_matching()
+    matches = execute_static_naive_matching
     return {"data": matches}
