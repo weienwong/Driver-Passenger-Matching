@@ -4,7 +4,7 @@ from app.csv_parser import read_csv
 from app.models import DataPoint, DataPointType, Match
 
 
-def execute_naive_matching():
+def execute_static_naive_matching():
     reader = read_csv()
     drivers, passengers = validate_data(reader)
     matched_drivers_passengers = []
