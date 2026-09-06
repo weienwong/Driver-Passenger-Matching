@@ -1,6 +1,23 @@
 services:
   redis:
     image: redis:7-alpine
-    container_name: redis
     ports:
       - "6379:6379"
+
+  api:
+    build: .
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+
+  lta-ingestor:
+    build: .
+    command: python -m app.workers.lta_ingestor
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - redis
