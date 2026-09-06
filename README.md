@@ -64,12 +64,6 @@ The ingestor fetches LTA taxi locations and writes them to the `taxi_locations`
 Redis GEO index. Wait for the "Taxi locations loaded into Redis" log before
 making a bounded matching request.
 
-> **Note:** `api` and `lta-ingestor` are configured to build from the project
-> root. Add a `Dockerfile` before running the full-stack command for the first
-> time. Inside Docker Compose, these services use `redis://redis:6379/0`; the
-> `redis` hostname refers to the Redis service. Local Python processes outside
-> Docker should continue using `redis://localhost:6379/0` from `.env`.
-
 ## Run the Matching Algorithms
 
 The static naive matcher uses `data/geolocations.csv` and does not require
