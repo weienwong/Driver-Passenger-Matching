@@ -38,3 +38,18 @@ def parse(csv_text):
             raise ValueError(f"malformed lng, expected numeric string: {row!r}")
         data_points.append(model.DataPoint(uuid, person_type, lat_float, lng_float))
     return data_points
+
+
+def split_by_type(data_points): 
+    if len(data_points) == 0: 
+        return ([], []) 
+    passengers = []
+    drivers = []
+    for dp in data_points:
+        if dp.type == model.PersonType.PASSENGER:
+            passengers.append(dp)
+        elif dp.type == model.PersonType.DRIVER:
+            drivers.append(dp)
+    return (passengers, drivers)
+
+
