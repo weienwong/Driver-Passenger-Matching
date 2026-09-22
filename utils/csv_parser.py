@@ -4,6 +4,12 @@ import uuid as Uuid
 def hello():
     return "Hello, world!"
 
+def csv_file_handler(pathToCsv, has_header):
+    with open(pathToCsv) as f:
+        lines = f.read().splitlines()
+    if has_header:
+        lines = lines[1:]
+    return "\n".join(lines)
 
 def parse(csv_text):
     rows = []
