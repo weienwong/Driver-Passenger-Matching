@@ -24,11 +24,13 @@ def match(passengers, drivers):
             raise TypeError("drivers list contains a passenger")
 
     m = populate_matrix(passengers, drivers)
-    row_ind, col_ind = scipy.optimize.linear_sum_assignment(m)
 
+    return zip_results(m, passengers, drivers)
+
+def zip_results(m, passengers, drivers):
+    row_ind, col_ind = scipy.optimize.linear_sum_assignment(m)
     results = []
     for i, j in zip(row_ind, col_ind):
         result = (passengers[i], drivers[j])
         results.append(result)
     return results
-
